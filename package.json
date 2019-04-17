@@ -1,0 +1,37 @@
+{
+  "name": "Week7-Bee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test tape src/tests/*.test.js | tap-bunny",
+    "start": "NODE_ENV=start node src/server.js",
+    "liveStart": "NODE_ENV=start nodemon src/server.js",
+    "dbBuild": "NODE_ENV=build node src/databases/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FAC-Sixteen/Week7-Bee.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FAC-Sixteen/Week7-Bee/issues"
+  },
+  "homepage": "https://github.com/FAC-Sixteen/Week7-Bee#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.11",
+    "supertest": "^4.0.2",
+    "tap-bunny": "^1.0.8",
+    "tape": "^4.10.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.3.1",
+    "env2": "^2.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.10.0",
+    "query-string": "^6.4.2"
+  }
+}
