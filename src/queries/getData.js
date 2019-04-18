@@ -6,7 +6,7 @@ const getUsernameValid = username => {
       .query("SELECT username FROM users WHERE username = $1", [username])
       .then(res => {
         if (res.rows.length > 0) {
-          resolve(false);
+          reject('Username already Exists');
         } else {
           resolve(true);
         }
