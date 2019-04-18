@@ -42,6 +42,8 @@ const validate = (obj) => {
     return new Error("Password does not match");
   }
 
+  //THIS ASSIGNS THE checkUsernameExists FUNCTION TO A VARIABLE AND CALLS IT
+
   // const checkUsernameExists = getUsername(obj.username);
   //
   // if (checkUsernameExists) {
