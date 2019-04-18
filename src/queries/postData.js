@@ -1,6 +1,7 @@
 const dbConnection = require("../dbConnection.js");
 
-const postNewUser = (obj) {
+const postNewUser = (obj) => {
+  return new Promise ((resolve, reject) => {
   dbConnection.query("INSERT INTO users(first_name, last_name, username, email, password) VALUES ($1, $2, $3, $4, $5)",
 [
   obj.first_name,
@@ -16,6 +17,7 @@ const postNewUser = (obj) {
   cb(null);
 }
 );
+  })
 }
 
 module.exports = {

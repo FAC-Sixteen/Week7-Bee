@@ -11,7 +11,15 @@ const fakeInput = {
   confirmed_password: "qwerty101!Q"
 }
 
-console.log(validate(fakeInput));
+validate(fakeInput)
+  .then((res) => console.log(res))
+  .then((fakeInput) => console.log(fakeInput))
+  .catch((err) => console.log(err))
+
+
+
+
+// console.log(validate(fakeInput));
 
 const handleHome = res => {
   fs.readFile(path.join(__dirname, "../public/index.html"), (err, file) => {
