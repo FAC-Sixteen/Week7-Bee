@@ -9,6 +9,14 @@ if (process.env.NODE_ENV == "test")
 
 const sql = fs.readFileSync(sqlPath).toString();
 
-const runDbBuild = cb => dbConnection.query(sql, cb);
+const runDbBuild = new Promise((resolve, reject) => {
+  dbConnection.query(sql, (err, res) => {
+    if (err) reject(err);
+    resolve(true);
+  });
+});
+
+
+// cb => dbConnection.query(sql, cb);
 
 module.exports = runDbBuild;
