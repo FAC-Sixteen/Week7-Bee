@@ -1,5 +1,17 @@
 const fs = require("fs");
 const path = require("path");
+const validate = require('./scripts/validate.js');
+
+const fakeInput = {
+  first_name: "Burhanda",
+  last_name: "Bobhanda",
+  username: "mistapepper",
+  email: "bobbysebolao@gmail.com",
+  password: "qwerty101!Q",
+  confirmed_password: "qwerty101!Q"
+}
+
+console.log(validate(fakeInput));
 
 const handleHome = res => {
   fs.readFile(path.join(__dirname, "../public/index.html"), (err, file) => {
