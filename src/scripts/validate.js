@@ -1,4 +1,8 @@
 const validate = (obj) => {
+  return new Promise ((resolve, reject) => {
+
+
+ 
   // console.log(obj.first_name);
   // return;
   const lettersAndApostrophesRegex = /^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
@@ -15,31 +19,29 @@ const validate = (obj) => {
   // console.log(password);
 
   if (!firstName) {
-    return new Error("Please input a real first name");
+    reject(new Error("Please input a real first name"));
   }
 
   if (!lastName) {
-    return new Error("Please input a real last name");
+    reject( new Error("Please input a real last name"));
   }
 
   if (!username) {
-    return new Error("Your username does not meet the requirements");
+    reject(new Error("Your username does not meet the requirements"));
   }
 
   if (!email) {
-    return new Error("Please input a valid email address");
+    reject(new Error("Please input a valid email address"));
   }
 
   if (!password) {
     if (obj.password.length < 8 || obj.password.length > 20) {
-    return new Error("Please ensure your password is between 8-20 characters long");
+    reject(new Error("Please ensure your password is between 8-20 characters long"));
   }
 
-
   }
-
   if (obj.password !== obj.confirmed_password) {
-    return new Error("Password does not match");
+    reject(new Error("Password does not match"));
   }
 
   //THIS ASSIGNS THE checkUsernameExists FUNCTION TO A VARIABLE AND CALLS IT
@@ -51,8 +53,10 @@ const validate = (obj) => {
   // }
 
   else {
-    return console.log("New user account details passed the validation checks");
+    resolve(console.log("New user account details passed the validation checks"));
   }
+
+})
 
 }
 
