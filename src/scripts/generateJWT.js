@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 
-const secret = "ya like jazz?";
+require("env2")("./config.env");
+
+const secret = process.env.SECRET;
 
 var generateToken = (obj) => {
   return new Promise((resolve, reject) => {

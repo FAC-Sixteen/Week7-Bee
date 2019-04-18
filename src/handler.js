@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const validate = require('./scripts/validate.js');
+const getData = require('./queries/getData.js');
+const postData = require('./queries/postData.js');
+const hash = require('./scripts/hash.js');
 
 const fakeInput = {
   first_name: "Burhanda",
@@ -15,9 +18,6 @@ validate(fakeInput)
   .then((res) => console.log(res))
   .then((fakeInput) => console.log(fakeInput))
   .catch((err) => console.log(err))
-
-
-
 
 // console.log(validate(fakeInput));
 
@@ -59,6 +59,21 @@ const handlePublic = (req, res) => {
     }
   });
 };
+
+const handleCreateUser = (req, res) => {
+  promise.all(validate("TODO requestObject"), getData.getUsernameValid("TODO Username"))
+    .then(response => hash.hashedPassword("TODO password"))
+    .then(hash => postData.postNewUser(buildObject()))
+    .then(response => {
+      res.writeHead(302, {"Location": "/"});
+      res.end();
+    })
+    .catch(err => {
+    res.writeHead(302, { "Content-Type": "application/json", "Location": "/" })
+    res.end(err);
+  })
+}
+
 
 module.exports = {
   handleHome,
