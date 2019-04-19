@@ -1,3 +1,39 @@
 body {
   background-color: yellow;
 }
+
+.login__modal--hidden {
+  display: none;
+  width: 50vw;
+  height: 50vh;
+  background: red;
+}
+
+.login__modal--display {
+  display: block;
+  width: 50vw;
+  height: 50vh;
+  background: red;
+}
+
+.register__modal--hidden {
+  display: none;
+  width: 50vw;
+  height: 50vh;
+  background: red;
+}
+
+.register__modal--display {
+  display: block;
+  width: 50vw;
+  height: 50vh;
+  background: red;
+}
+
+#loginModal {
+  background-color: red;
+}
+
+#registerModal {
+  background-color: blue;
+}

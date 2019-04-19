@@ -6,14 +6,14 @@ const postNewUser = (obj) => {
     obj.first_name,
     obj.last_name,
     obj.username,
-    obj.email,
+    obj.email.toLowerCase(),
     obj.password])
     .then(res => {
       console.log('New user added to database ')
       resolve(true)
     })
     .catch(err => reject(err))
-  
+
 })
 }
 // const fakeInput = {
@@ -30,7 +30,3 @@ const postNewUser = (obj) => {
 module.exports = {
   postNewUser
 }
-
-
-
-
