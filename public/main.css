@@ -4,30 +4,34 @@ body {
 
 .login__modal--hidden {
   display: none;
-  width: 50vw;
-  height: 50vh;
+  /* width: 50vw;
+  height: 50vh; */
   background: red;
+  padding: 20px;
 }
 
 .login__modal--display {
   display: block;
-  width: 50vw;
-  height: 50vh;
+  /* width: 50vw;
+  height: 50vh; */
   background: red;
+  padding: 20px;
 }
 
 .register__modal--hidden {
   display: none;
-  width: 50vw;
-  height: 50vh;
-  background: red;
+  /* width: 50vw;
+  height: 50vh; */
+  background:blue;
+  padding: 20px;
 }
 
 .register__modal--display {
   display: block;
-  width: 50vw;
-  height: 50vh;
-  background: red;
+  /* width: 50vw;
+  height: 50vh; */
+  background:blue;
+  padding: 20px;
 }
 
 #loginModal {
