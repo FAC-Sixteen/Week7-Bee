@@ -19,7 +19,7 @@ CREATE TABLE feedback (
 );
 
 INSERT INTO users (first_name, last_name, username, email, password)
-VALUES ('test', 'mctest', 'testing', 'testing@test.com', 'testpass'),
+VALUES ('test', 'mctest', 'testing', 'testing@test.com', '$2a$10$k2QfvRj6SJba/GnHP942a.hjR5XWdyOsrQbbFyRp1yz6KoIjxBu8m'),
 ('alfred', 'hardy', 'hard_al', 'hard_al@test.com', 'testpassword');
 
 INSERT INTO feedback (poster_id, reciever_id, content)
