@@ -14,6 +14,12 @@ const router = (req, res) => {
     case `GET /public${endpoint}`:
       handler.handlePublic(req, res);
       break;
+    case `POST /createuser`:
+      handler.handleCreateUser(req, res);
+      break;
+    case `POST /login`:
+      handler.handleLogin(req, res);
+      break;
     default:
       res.writeHead(404, {
         "Content-Type": "text/html"

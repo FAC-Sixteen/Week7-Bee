@@ -1,23 +1,24 @@
 const fs = require("fs");
 const path = require("path");
-const validate = require('./scripts/validate.js');
-const getData = require('./queries/getData.js');
-const postData = require('./queries/postData.js');
-const hash = require('./scripts/hash.js');
+const validate = require("./scripts/validate.js");
+const getData = require("./queries/getData.js");
+const postData = require("./queries/postData.js");
+const hash = require("./scripts/hash.js");
+const genToken = require("./scripts/generateJWT");
 
-const fakeInput = {
-  first_name: "Burhanda",
-  last_name: "Bobhanda",
-  username: "mistapepper",
-  email: "bobbysebolao@gmail.com",
-  password: "qwerty101!Q",
-  confirmed_password: "qwerty101!Q"
-}
-
-validate(fakeInput)
-  .then((res) => console.log(res))
-  .then((fakeInput) => console.log(fakeInput))
-  .catch((err) => console.log(err))
+// const fakeInput = {
+//   first_name: "Burhanda",
+//   last_name: "Bobhanda",
+//   username: "mistapepper",
+//   email: "bobbysebolao@gmail.com",
+//   password: "qwerty101!Q",
+//   confirmed_password: "qwerty101!Q"
+// };
+//
+// validate(fakeInput)
+//   .then((res) => console.log(res))
+//   .then((fakeInput) => console.log(fakeInput))
+//   .catch((err) => console.log(err))
 
 // console.log(validate(fakeInput));
 
@@ -61,21 +62,48 @@ const handlePublic = (req, res) => {
 };
 
 const handleCreateUser = (req, res) => {
-  promise.all(validate("TODO requestObject"), getData.getUsernameValid("TODO Username"))
+  promise
+    .all(
+      validate("TODO requestObject"),
+      getData.getUsernameValid("TODO Username")
+    )
     .then(response => hash.hashedPassword("TODO password"))
     .then(hash => postData.postNewUser(buildObject()))
     .then(response => {
-      res.writeHead(302, {"Location": "/"});
+      res.writeHead(302, { Location: "/" });
       res.end();
     })
     .catch(err => {
-    res.writeHead(302, { "Content-Type": "application/json", "Location": "/" })
-    res.end(err);
-  })
-}
+      res.writeHead(302, { "Content-Type": "application/json", Location: "/" });
+      res.end(err);
+    });
+};
 
+const handleLogin = (req, res) => {
+  getData
+    .getUser("testing")
+    .then(user => {
+      hash.comparePassword("testpass", user.password).then(pass => {
+        if (pass === true) {
+          genToken({ username: user.username, logged_in: true }).then(token => {
+            res.writeHead(302, { "set-cookie": token, Location: "/profile" });
+            res.end();
+          });
+        } else {
+          res.writeHead(400, { "content-type": "text/html" });
+          res.end("incorrect password");
+        }
+      });
+    })
+    .catch(err => {
+      res.writeHead(400, { "content-type": "text/html" });
+      res.end("Incorrect username");
+    });
+};
 
 module.exports = {
   handleHome,
-  handlePublic
+  handlePublic,
+  handleCreateUser,
+  handleLogin
 };

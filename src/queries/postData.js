@@ -1,4 +1,4 @@
-const dbConnection = require("../databases/db_Connection.js");
+const dbConnection = require("../databases/db_connection.js");
 
 const postNewUser = (obj) => {
   return new Promise ((resolve, reject) => {
@@ -29,4 +29,4 @@ const postNewUser = (obj) => {
 
 module.exports = {
   postNewUser
-}
+};
