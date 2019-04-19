@@ -1,6 +1,6 @@
 # Week7-Bee
 
-![](https://i.imgur.com/hwbXfyF.jpg)
+![](https://media.giphy.com/media/1BXa2alBjrCXC/giphy.gif)
 # TEAM :b::bee: - :b:EADME
 
 ---
