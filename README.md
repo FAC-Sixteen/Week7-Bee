@@ -46,4 +46,5 @@ Rohan '' Shah Summers - [@RohanSSS](https://github.com/RohanSSS)
 ## what we learned
 
 yay promises
+How to use Coolors for matching colours on your project.
 
