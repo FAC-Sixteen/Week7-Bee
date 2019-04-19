@@ -71,13 +71,12 @@ const handleCreateUser = (req, res) => {
   req.on("end", () => {
     const accountObject = querystring.parse(allData);
     console.log(accountObject);
-    promise
-      .all(
-        validate(accountObject),
-        getData.getUsernameValid(accountObject.username)
-      )
+    Promise.all([
+      validate(accountObject),
+      getData.getUsernameValid(accountObject.username)
+    ])
       .then(response => hash.hashedPassword(accountObject.password))
-      .then(hash => postData.postNewUser(buildObject()))
+      .then(hash => postData.postNewUser(accountObject, hash))
       .then(response => {
         res.writeHead(302, { Location: "/" });
         res.end();
@@ -86,6 +85,7 @@ const handleCreateUser = (req, res) => {
         res.writeHead(400, {
           "Content-Type": "text/html"
         });
+        console.log(err);
         res.end(err);
       });
   });

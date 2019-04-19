@@ -3,21 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <title></title>
-    <!-- <link rel="stylesheet" href="/public/main.css" /> -->
+    <link rel="stylesheet" href="/public/main.css" />
   </head>
   <body>
     <nav>
       <button id="loginModal">Login</button>
       <button id="registerModal">Register</button>
     </nav>
-    <h1>Linking works</h1>
+    <h1>Feedback APP</h1>
 
     <div class="login__modal--hidden">
-      Hello
+      LOGIN <br />
+      <br />
+      <br />
       <div class="login__modal-content">
         <form class="login__account" action="/login" method="post">
           <label for="loginUsername">Username: </label>
           <input name="username" id="loginUsername" />
+
+          <br />
+          <br />
 
           <label for="loginPassword">Password: </label>
           <input name="password" id="loginPassword" />
@@ -28,24 +33,28 @@
     </div>
 
     <div class="register__modal--hidden">
-      Goodbyer
+      Register <br />
+      <br />
+      <br />
       <div class="register__modal-content">
-        <form class="register__account">
+        <form class="register__account" action="/createuser" method="post">
           <label for="firstName">First name: </label>
           <input
-            name="firstName"
+            name="first_name"
             id="firstName"
             pattern="^(?=.{1,50}$)[a-zA-Z]+(?:['_.\s][a-z]+)*$"
             required
           />
-
+          <br /><br />
           <label for="lastName">Last name: </label>
           <input
-            name="lastName"
+            name="last_name"
             id="lastName"
             pattern="^(?=.{1,50}$)[a-zA-Z]+(?:['_.\s][a-z]+)*$"
             required
           />
+          <br />
+          <br />
 
           <label for="createUsername">Username: </label>
           <input
@@ -54,6 +63,8 @@
             pattern="^[a-zA-Z0-9]+([a-zA-Z0-9](_|-|-|.)[a-zA-Z0-9])*[a-zA-Z0-9]+$"
             required
           />
+          <br />
+          <br />
 
           <label for="email">Email: </label>
           <input
@@ -62,6 +73,8 @@
             pattern="[-.\w]+@([\w-]+\.)+[\w-]{2,20}"
             required
           />
+          <br />
+          <br />
 
           <label for="createPassword">Password: </label>
           <input
@@ -71,10 +84,12 @@
             pattern="(?=^.{8,20}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$"
             required
           />
+          <br />
+          <br />
 
           <label for="confirmPassword">Confirm password: </label>
           <input
-            name="confirmPassword"
+            name="confirm_password"
             id="confirmPassword"
             type="password"
             pattern="(?=^.{8,20}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$"
@@ -86,6 +101,6 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="./script.js"></script>
+    <script type="text/javascript" src="/public/script.js"></script>
   </body>
 </html>

@@ -36,7 +36,7 @@ const validate = obj => {
         reject("Please ensure your password is between 8-20 characters long");
       }
     }
-    if (obj.password !== obj.confirmed_password) {
+    if (obj.password !== obj.confirm_password) {
       reject("Password does not match");
     }
 
@@ -47,9 +47,9 @@ const validate = obj => {
     // if (checkUsernameExists) {
     //   return new Error("Username already exists");
     // }
-    else {
-      resolve("New user account details passed the validation checks");
-    }
+    // else {
+    resolve("New user account details passed the validation checks");
+    // }
   });
 };
 
