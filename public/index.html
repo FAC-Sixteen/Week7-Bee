@@ -3,10 +3,58 @@
   <head>
     <meta charset="utf-8" />
     <title></title>
-    <link rel="stylesheet" href="/public/main.css" />
+    <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
+    <nav>
+      <button id="loginModal">Login</button>
+      <button id="registerModal">Register</button>
+    </nav>
     <h1>Linking works</h1>
-    <script type="text/javascript" src="/public/script.js"></script>
+
+    <div class="login__modal--hidden">Hello
+      <div class="login__modal-content">
+        <form class="login__account" action="/login" method="post">
+          <label for="loginUsername">Username: </label>
+            <input name="username" id="loginUsername">
+
+            <label for="loginPassword">Password: </label>
+              <input name="password" id="loginPassword">
+
+              <button type="submit">Login</button>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="register__modal--hidden">Goodbyer
+      <div class="register__modal-content">
+        <form class="register__account">
+
+          <label for="firstName">First name: </label>
+            <input name="firstName" id="firstName" pattern="^(?=.{1,50}$)[a-zA-Z]+(?:['_.\s][a-z]+)*$" required>
+
+            <label for="lastName">Last name: </label>
+              <input name="lastName" id="lastName" pattern="^(?=.{1,50}$)[a-zA-Z]+(?:['_.\s][a-z]+)*$" required>
+
+              <label for="createUsername">Username: </label>
+                <input name="username" id="createUsername" pattern="^[a-zA-Z0-9]+([a-zA-Z0-9](_|-|-|.)[a-zA-Z0-9])*[a-zA-Z0-9]+$" required>
+
+                <label for="email">Email: </label>
+                  <input name="email" id="email" pattern="[-.\w]+@([\w-]+\.)+[\w-]{2,20}" required>
+
+                <label for="createPassword">Password: </label>
+                  <input name="password" id="createPassword" type="password" pattern="(?=^.{8,20}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$" required>
+
+                  <label for="confirmPassword">Confirm password: </label>
+                    <input name="confirmPassword" id="confirmPassword" type="password" pattern="(?=^.{8,20}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$" required>
+
+                    <button type="submit">Register</button>
+
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./script.js"></script>
   </body>
 </html>
