@@ -16,15 +16,15 @@ const validate = obj => {
     // console.log(password);
 
     if (!firstName) {
-      reject(new Error("Please input a real first name"));
+      reject("Please input a real first name");
     }
 
     if (!lastName) {
-      reject(new Error("Please input a real last name"));
+      reject("Please input a real last name");
     }
 
     if (!username) {
-      reject(new Error("Your username does not meet the requirements"));
+      reject("Your username does not meet the requirements");
     }
 
     if (!email) {
@@ -33,15 +33,11 @@ const validate = obj => {
 
     if (!password) {
       if (obj.password.length < 8 || obj.password.length > 20) {
-        reject(
-          new Error(
-            "Please ensure your password is between 8-20 characters long"
-          )
-        );
+        reject("Please ensure your password is between 8-20 characters long");
       }
     }
-    if (obj.password !== obj.confirmed_password) {
-      reject(new Error("Password does not match"));
+    if (obj.password !== obj.confirm_password) {
+      reject("Password does not match");
     }
 
     //THIS ASSIGNS THE checkUsernameExists FUNCTION TO A VARIABLE AND CALLS IT
@@ -51,9 +47,9 @@ const validate = obj => {
     // if (checkUsernameExists) {
     //   return new Error("Username already exists");
     // }
-    else {
-      resolve("New user account details passed the validation checks");
-    }
+    // else {
+    resolve("New user account details passed the validation checks");
+    // }
   });
 };
 

@@ -5,6 +5,7 @@ const getData = require("./queries/getData.js");
 const postData = require("./queries/postData.js");
 const hash = require("./scripts/hash.js");
 const genToken = require("./scripts/generateJWT");
+const querystring = require("query-string");
 
 // const fakeInput = {
 //   first_name: "Burhanda",
@@ -62,43 +63,67 @@ const handlePublic = (req, res) => {
 };
 
 const handleCreateUser = (req, res) => {
-  promise
-    .all(
-      validate("TODO requestObject"),
-      getData.getUsernameValid("TODO Username")
-    )
-    .then(response => hash.hashedPassword("TODO password"))
-    .then(hash => postData.postNewUser(buildObject()))
-    .then(response => {
-      res.writeHead(302, { Location: "/" });
-      res.end();
-    })
-    .catch(err => {
-      res.writeHead(302, { "Content-Type": "application/json", Location: "/" });
-      res.end(err);
-    });
+  let allData = "";
+  req.on("data", chunk => {
+    allData += chunk;
+  });
+
+  req.on("end", () => {
+    const accountObject = querystring.parse(allData);
+    console.log(accountObject);
+    Promise.all([
+      validate(accountObject),
+      getData.getUsernameValid(accountObject.username)
+    ])
+      .then(response => hash.hashedPassword(accountObject.password))
+      .then(hash => postData.postNewUser(accountObject, hash))
+      .then(response => {
+        res.writeHead(302, { Location: "/" });
+        res.end();
+      })
+      .catch(err => {
+        res.writeHead(400, {
+          "Content-Type": "text/html"
+        });
+        console.log(err);
+        res.end(err);
+      });
+  });
 };
 
 const handleLogin = (req, res) => {
-  getData
-    .getUser("testing")
-    .then(user => {
-      hash.comparePassword("testpass", user.password).then(pass => {
-        if (pass === true) {
-          genToken({ username: user.username, logged_in: true }).then(token => {
-            res.writeHead(302, { "set-cookie": token, Location: "/profile" });
-            res.end();
-          });
-        } else {
-          res.writeHead(400, { "content-type": "text/html" });
-          res.end("incorrect password");
-        }
+  let allData = "";
+  req.on("data", chunk => {
+    allData += chunk;
+  });
+
+  req.on("end", () => {
+    const loginObject = querystring.parse(allData);
+    getData
+      .getUser(loginObject.username)
+      .then(user => {
+        hash.comparePassword(loginObject.password, user.password).then(pass => {
+          if (pass === true) {
+            genToken({ username: user.username, logged_in: true }).then(
+              token => {
+                res.writeHead(302, {
+                  "set-cookie": `flower=${token}; max-age=9000; HttpOnly`,
+                  Location: "/profile"
+                });
+                res.end();
+              }
+            );
+          } else {
+            res.writeHead(400, { "content-type": "text/html" });
+            res.end("incorrect password");
+          }
+        });
+      })
+      .catch(err => {
+        res.writeHead(400, { "content-type": "text/html" });
+        res.end("Incorrect username");
       });
-    })
-    .catch(err => {
-      res.writeHead(400, { "content-type": "text/html" });
-      res.end("Incorrect username");
-    });
+  });
 };
 
 module.exports = {
