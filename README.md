@@ -3,6 +3,8 @@
 ![](https://media.giphy.com/media/1BXa2alBjrCXC/giphy.gif)
 # TEAM :b::bee: - :b:EADME
 
+![](https://media.giphy.com/media/X33qhlGfa7gtO/giphy.gif)
+
 ---
 
 ## The Team:
